@@ -125,7 +125,7 @@ section.view.on{display:block}
 .mini svg{width:100%;height:auto;max-width:120px;display:block;margin:0 auto 4px;background:var(--bg);border-radius:8px}
 .block{background:var(--paper);border:1px solid var(--line);border-radius:16px;margin-top:12px;overflow:hidden;border-top:5px solid var(--c)}
 .block-h{display:flex;justify-content:space-between;align-items:center;padding:10px 14px 0;font-size:.8rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.ex{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:12px 14px;border-top:1px dashed var(--line)}
+.ex{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;padding:12px 14px;border-top:1px dashed var(--line)}
 .ex:first-of-type{border-top:0}
 .ex .fig svg{width:120px;height:100px;background:var(--bg);border-radius:10px;display:block}
 .ex .fig a{display:block;text-align:center;font-size:.75rem;font-weight:700;color:var(--c);text-decoration:none;margin-top:4px}
@@ -150,7 +150,7 @@ section.view.on{display:block}
 .after .stars{display:flex;gap:4px}
 .after .stars button{font-size:1.6rem;background:none;border:0;cursor:pointer;color:var(--line);padding:0 2px}
 .after .stars button.on{color:var(--sand)}
-textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);resize:vertical;font-size:.92rem}
+textarea{box-sizing:border-box;width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);resize:vertical;font-size:.92rem}
 .wa{background:var(--wa)!important;color:#073B1E!important}
 
 /* forms */
@@ -203,6 +203,37 @@ tr.chg td{font-weight:800;border-bottom:0}
 .fab svg{width:22px;height:22px}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(74px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:999px;font-size:.85rem;font-weight:600;z-index:60;opacity:0;transition:opacity .25s;pointer-events:none}
 .toast.on{opacity:1}
+.rest{position:fixed;left:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:66;display:none;align-items:center;gap:8px;background:var(--plum);color:var(--plum-ink);border-radius:999px;padding:6px 8px 6px 6px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.rest.on{display:flex}
+.rest svg{width:36px;height:36px}
+.rest b{display:block;font-variant-numeric:tabular-nums;font-size:1rem;line-height:1}
+.rest small{display:block;font-size:.7rem;opacity:.8}
+.rest button{border:0;background:rgba(255,255,255,.14);color:var(--plum-ink);border-radius:999px;padding:6px 10px;font-weight:700;font-size:.78rem;cursor:pointer}
+.rest.go{background:var(--sand);color:#2A1E10}
+.setprog{font-size:.8rem;font-weight:800;color:var(--c);margin-bottom:4px}
+.sets{grid-column:1 / -1;display:flex;flex-direction:column;gap:6px}
+.setrow{display:grid;grid-template-columns:54px minmax(0,1fr) auto minmax(0,1fr) auto 40px;gap:6px;align-items:center;padding:5px 6px;border-radius:10px;border:1px solid transparent}
+.setrow .sl{font-size:.8rem;font-weight:700;color:var(--muted);line-height:1.1}
+.setrow .sl small{display:block;font-size:.72rem;font-weight:700;color:var(--c)}
+.setrow.uni.l{margin-top:-4px}
+.setrow.uni:not(.l){margin-top:4px}
+.exnote{margin-top:4px}
+.exnote summary{cursor:pointer;font-size:.82rem;font-weight:700;color:var(--muted);padding:4px 0}
+.exnote textarea{margin-top:4px;width:100%;max-width:100%;display:block;box-sizing:border-box}
+.sets,.exnote{min-width:0;max-width:100%}
+.btn.sm{padding:8px 14px;font-size:.85rem;margin-top:6px}
+.setrow input{width:100%;min-width:0;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-size:1rem;text-align:center}
+.setrow .u{font-size:.75rem;color:var(--muted)}
+.setrow .chk{width:40px;height:38px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);font-weight:800;cursor:pointer;color:var(--muted)}
+.setrow.cur{background:var(--soft);border-color:var(--c)}
+.setrow.cur .sl{color:var(--c)}
+.setrow.ok{opacity:.75}
+.setrow.ok .chk{background:var(--c);border-color:var(--c);color:#fff}
+.swapbtn{display:block;margin:6px auto 0;border:1px dashed var(--line);background:transparent;border-radius:8px;padding:4px 6px;font-size:.7rem;font-weight:700;cursor:pointer;color:var(--muted);line-height:1.2}
+.swaps{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:6px;background:var(--bg);border-radius:10px;padding:8px}
+.swaps[hidden]{display:none}
+.swaps button{border:1.5px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 10px;font-size:.82rem;font-weight:600;cursor:pointer}
+.swaps button[aria-pressed="true"]{border-color:var(--c);background:var(--c);color:#fff}
 .coachmsg{position:fixed;left:50%;bottom:calc(78px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);z-index:65;width:min(92vw,420px);display:flex;gap:12px;align-items:flex-start;background:var(--plum);color:var(--plum-ink);border-radius:16px;padding:12px 14px;box-shadow:0 10px 28px rgba(30,20,38,.35);opacity:0;pointer-events:none;transition:opacity .3s, transform .35s cubic-bezier(.2,.9,.3,1.2);cursor:pointer}
 .coachmsg.on{opacity:1;transform:translate(-50%,0);pointer-events:auto}
 .coachmsg .av{flex:0 0 auto;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.1rem;background:linear-gradient(180deg,#F6E3B8,#C99A4B);color:#2A1E10}
@@ -224,7 +255,7 @@ footer .sig{font-size:1.05rem;color:var(--ink)}
   #scene{height:170px}
   .start{padding:12px 16px}
   .days{grid-template-columns:repeat(2,1fr)}
-  .ex{grid-template-columns:96px 1fr}
+  .ex{grid-template-columns:96px minmax(0,1fr)}
   .ex .fig svg{width:96px;height:80px}
   .fab span{display:none}
   .fab{padding:12px}
@@ -282,6 +313,7 @@ footer .sig{font-size:1.05rem;color:var(--ink)}
 
 <a class="fab" id="fab" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C8.8 3 3 8.6 3 15.6c0 2.5.7 4.8 2 6.8L3.6 29l6.8-1.8c1.8 1 3.8 1.5 5.7 1.5 7.2 0 13-5.6 13-12.6S23.2 3 16 3zm0 23.1c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-4 1.1 1.1-3.9-.2-.4c-1-1.6-1.6-3.5-1.6-5.4C5.8 10.2 10.4 5.7 16 5.7s10.2 4.5 10.2 10.1S21.6 26.1 16 26.1zm5.6-7.5c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2-.8 1-.9 1.2-.3.2-.6.1c-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1s0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5s0-.4 0-.5-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"/></svg><span data-t="whats"></span></a>
 <div class="toast" id="toast" role="status"></div>
+<div class="rest" id="rest" role="timer" aria-live="off"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="3"/><circle id="restRing" cx="18" cy="18" r="15" fill="none" stroke="#E8CC94" stroke-width="3" stroke-linecap="round" stroke-dasharray="94.25" transform="rotate(-90 18 18)"/></svg><div><b id="restT"></b><small id="restL"></small></div><button type="button" id="restSkip"></button></div>
 <div class="coachmsg" id="coachMsg" role="status" aria-live="polite"><span class="av" aria-hidden="true">I</span><div><p id="coachTxt"></p><span class="sig" id="coachSig">– Ibrahim</span></div></div>
 <div class="celebrate" id="celebrate" role="dialog" aria-modal="true" aria-labelledby="prTitle">
   <div class="box"><h2 id="prTitle"></h2><p class="big" id="prWhat"></p><p id="prDance"></p><button class="btn sand" type="button" id="prClose">OK</button></div>
@@ -572,7 +604,7 @@ const T = {
   prsT:"Your PR wall", noPr:"Your first PR will land here.", liftsT:"Main lifts (estimated max, kg)", noLift:"Log your main lifts and the lines appear here.", consT:"Weeks that counted", consHint:"A week counts when you train at least twice.",
   shareT:"Send your progress", today:"Today", wk:"Week", month:"Month", toCoach:"to Coach", backupT:"Backup", copyB:"Copy backup code", restoreB:"Restore", restoreHint:"Paste your backup code here", copied:"Copied", restored:"Restored", badCode:"No valid backup code found.", savedT:"Saved",
   pickDay:"Pick your session for today", rRep:"Report", stalled:"No progress for 3 sessions", none:"none", sessions:"Sessions", avgMood:"Average mood", avgEnergy:"Energy", prsW:"New PRs",
-  waHello:"Hi Coach Ibrahim! 👋", yourTime:"Your time", firstStep:"Your first step is waiting.", stepsN:"{n} steps on your way", nextSurprise:"next surprise in {k}", goal18:"You made it to the finish! 🎉"},
+  waHello:"Hi Coach Ibrahim! 👋", setN:"Set {n}", setOf:"Set {n} of {m}", allSets:"All sets done ✓", swap:"No machine? Swap", std:"Standard", restL:"Rest", skip:"Skip", restGo:"Go! 💪", nextEx:"Now {x}, then rest", repsNeeded:"Enter your reps first", stayAll:"Stay at {w} kg, aim for {r} reps in every set", lessHelp:"Less support: {w} kg", nextSet:"Next: set {n}", right:"Right", left:"Left", nowLeft:"Now the left side", perSide:"per side", noteT:"💬 Note", notePh:"How did it feel? Anything I should know?", noteSend:"Send to Coach Ibrahim", noteSaved:"Note saved", yourTime:"Your time", firstStep:"Your first step is waiting.", stepsN:"{n} steps on your way", nextSurprise:"next surprise in {k}", goal18:"You made it to the finish! 🎉"},
  de:{tagline:"30 Minuten. Nur für dich.", todayFor:"Heute geht's um", words:["Stärke","Ruhe","Fortschritt","dich"], start30:"Meine 30 starten",
   tabTrain:"Training", tabInfo:"Meine Daten", tabFood:"Ernährung", tabProg:"Fortschritt", finish:"Beenden", of:"von", savedLocal:"Alles wird auf diesem Handy gespeichert.", whats:"Coach schreiben",
   block:"Block", week:"Woche", deload:"Deload", nextBlock:"Block {n} starten", optional:"Optional",
@@ -601,85 +633,137 @@ const T = {
   prsT:"Deine Bestwerte", noPr:"Dein erster Bestwert landet hier.", liftsT:"Hauptübungen (geschätztes Maximum, kg)", noLift:"Trage deine Hauptübungen ein, dann erscheinen hier die Linien.", consT:"Wochen, die gezählt haben", consHint:"Eine Woche zählt ab 2 Trainings.",
   shareT:"Fortschritt senden", today:"Heute", wk:"Woche", month:"Monat", toCoach:"an Coach", backupT:"Backup", copyB:"Backup-Code kopieren", restoreB:"Wiederherstellen", restoreHint:"Backup-Code hier einfügen", copied:"Kopiert", restored:"Wiederhergestellt", badCode:"Kein gültiger Backup-Code gefunden.", savedT:"Gespeichert",
   pickDay:"Wähle deine Session für heute", rRep:"Bericht", stalled:"Seit 3 Sessions kein Fortschritt", none:"keine", sessions:"Sessions", avgMood:"Ø Stimmung", avgEnergy:"Energie", prsW:"Neue Bestwerte",
-  waHello:"Hallo Coach Ibrahim! 👋", yourTime:"Deine Zeit", firstStep:"Dein erster Schritt wartet.", stepsN:"{n} Schritte auf deinem Weg", nextSurprise:"nächste Überraschung in {k}", goal18:"Du hast das Ziel erreicht! 🎉"}
+  waHello:"Hallo Coach Ibrahim! 👋", setN:"Satz {n}", setOf:"Satz {n} von {m}", allSets:"Alle Sätze geschafft ✓", swap:"Gerät nicht da? Tauschen", std:"Standard", restL:"Pause", skip:"Überspringen", restGo:"Weiter! 💪", nextEx:"Jetzt {x}, dann Pause", repsNeeded:"Bitte zuerst die Wdh. eintragen", stayAll:"Bleib bei {w} kg, Ziel: {r} Wdh. in jedem Satz", lessHelp:"Weniger Unterstützung: {w} kg", nextSet:"Als Nächstes: Satz {n}", right:"Rechts", left:"Links", nowLeft:"Jetzt die linke Seite", perSide:"pro Seite", noteT:"💬 Notiz", notePh:"Wie hat es sich angefühlt? Gibt es etwas, das ich wissen sollte?", noteSend:"An Coach Ibrahim senden", noteSaved:"Notiz gespeichert", yourTime:"Deine Zeit", firstStep:"Dein erster Schritt wartet.", stepsN:"{n} Schritte auf deinem Weg", nextSurprise:"nächste Überraschung in {k}", goal18:"Du hast das Ziel erreicht! 🎉"}
 };
 const N = (o) => (o && typeof o==="object") ? (o[S.ui.lang] ?? o.en) : o;
 const t = (k, v) => { let s = (T[S.ui.lang]||T.en)[k] ?? T.en[k] ?? k; if(v) for(const x in v) s = s.replace("{"+x+"}", v[x]); return s; };
 
 /* ---------------- program ---------------- */
-const X = (o) => o;
+const C=(en,de)=>({en,de}), PH=C("per hand","pro Hand"), PS=C("per side","pro Seite"), TOT=C("total","gesamt");
+/* Laura's studio: cable station, leg extension, leg curl, dumbbells (up to ~20 kg), bench, cardio machines. */
 const EX = {
- ht:X({id:"ht", fig:"bht", name:{en:"Hip thrust (barbell or Smith)", de:"Hip Thrust (Langhantel oder Smith)"}, sets:4, reps:"8–12", rest:"90 s", main:1, start:50, inc:5, step:2.5, per:{en:"total",de:"gesamt"},
-   cue:{en:"Chin tucked, ribs down. Hold 2 seconds at the top and squeeze.", de:"Kinn zur Brust, Rippen unten. Oben 2 Sekunden halten und anspannen."},
-   alt:{id:"htm", fig:"htm", name:{en:"Glute bridge machine", de:"Glute-Bridge-Maschine"}, cue:{en:"Back-friendly version. Same 2-second hold at the top.", de:"Rückenfreundliche Variante. Gleiche 2-Sekunden-Pause oben."}}}),
- dbg:X({id:"dbg", fig:"deadbug", name:{en:"Dead bug", de:"Dead Bug"}, sets:3, reps:{en:"8/side",de:"8/Seite"}, rest:"—", unit:"bw", cue:{en:"Press your lower back into the floor the whole time.", de:"Unteren Rücken die ganze Zeit in den Boden drücken."}}),
- lp:X({id:"lp", fig:"lp", name:{en:"Leg press, feet high and wide", de:"Beinpresse, Füße hoch und breit"}, sets:3, reps:"10–15", rest:"90 s", inc:10, step:5,
-   cue:{en:"Push through your heels. Go deep without your hips lifting off the seat.", de:"Über die Fersen drücken. Tief gehen, ohne dass das Becken abhebt."}}),
- abd:X({id:"abd", fig:"abd", name:{en:"Hip abduction, leaning forward", de:"Abduktoren-Maschine, nach vorn gelehnt"}, sets:3, reps:"15–20", rest:"60 s", inc:5, step:5,
-   cue:{en:"Lean forward and hold the handles. This hits the upper glutes.", de:"Nach vorn lehnen und Griffe halten. So arbeitet der obere Po."}}),
- rdl:X({id:"rdl", fig:"rdldb", name:{en:"B-stance dumbbell RDL", de:"B-Stance Kurzhantel-RDL"}, sets:3, reps:"10–12", rest:"90 s", start:14, inc:2, step:1, per:{en:"per hand",de:"pro Hand"},
-   cue:{en:"Front leg does the work, back foot only for balance. Hips back, flat back.", de:"Das vordere Bein arbeitet, das hintere nur zur Balance. Hüfte nach hinten, Rücken gerade."},
-   alt:{id:"bex", fig:"bex", name:{en:"45° back extension, glute focus", de:"45° Hyperextension, Po-Fokus"}, reps:"12–15", cue:{en:"Round your upper back slightly and lift with your glutes.", de:"Oberen Rücken leicht runden und mit dem Po hochdrücken."}}}),
- lun:X({id:"lun", fig:"lunge", name:{en:"Walking lunges", de:"Ausfallschritte gehend"}, sets:2, reps:{en:"12/leg",de:"12/Bein"}, rest:"60 s", start:12, inc:2, step:1, per:{en:"per hand",de:"pro Hand"},
-   cue:{en:"Long steps, torso slightly forward.", de:"Lange Schritte, Oberkörper leicht nach vorn."}}),
- idp:X({id:"idp", fig:"idp", name:{en:"Incline dumbbell press", de:"Schrägbankdrücken (Kurzhanteln)"}, sets:3, reps:"8–12", rest:"90 s", main:1, start:10, inc:1, step:1, per:{en:"per hand",de:"pro Hand"},
-   cue:{en:"Bench at 30°. Lower slowly to chest level.", de:"Bank auf 30°. Langsam bis auf Brusthöhe senken."}}),
- lpd:X({id:"lpd", fig:"lpd", name:{en:"Lat pulldown", de:"Latzug"}, sets:3, reps:"8–12", rest:"90 s", main:1, inc:2.5, step:2.5,
-   cue:{en:"Pull your elbows down toward your back pockets, chest up.", de:"Ellbogen Richtung Gesäßtaschen ziehen, Brust raus."}, note:{en:"New: builds back width so the waist looks smaller.", de:"Neu: macht den Rücken breiter, die Taille wirkt schmaler."}}),
- row:X({id:"row", fig:"row", name:{en:"Seated cable row", de:"Rudern am Kabel (sitzend)"}, sets:3, reps:"8–12", rest:"75 s", start:30, inc:2.5, step:2.5,
-   cue:{en:"Squeeze your shoulder blades together at the end of each rep.", de:"Am Ende jeder Wdh. die Schulterblätter zusammenziehen."}, note:{en:"Time to go heavier: 30 kg.", de:"Zeit für mehr Gewicht: 30 kg."}}),
- lr:X({id:"lr", fig:"lr", name:{en:"Dumbbell lateral raise", de:"Seitheben (Kurzhanteln)"}, sets:3, reps:"12–20", rest:"60 s", start:6, inc:1, step:1, per:{en:"per hand",de:"pro Hand"},
-   cue:{en:"Lead with the elbows and stop at shoulder height.", de:"Mit den Ellbogen führen, auf Schulterhöhe stoppen."}}),
- cpo:X({id:"cpo", fig:"cpo", name:{en:"Cable pullover", de:"Pullover am Kabel"}, sets:2, reps:"12–15", rest:"60 s", start:15, inc:2.5, step:2.5,
-   cue:{en:"Arms long, pull down to your thighs.", de:"Arme lang, bis zu den Oberschenkeln ziehen."}}),
- curl:X({id:"curl", fig:"curl", name:{en:"Dumbbell curl", de:"Bizepscurls (Kurzhanteln)"}, sets:2, reps:"10–15", rest:"60 s", start:9, inc:1, step:1, per:{en:"per hand",de:"pro Hand"},
-   cue:{en:"Elbows still, no swinging.", de:"Ellbogen ruhig, kein Schwung."}}),
- tpd:X({id:"tpd", fig:"tpd", name:{en:"Cable triceps pushdown", de:"Trizepsdrücken am Kabel"}, sets:2, reps:"10–15", rest:"60 s", start:12.5, inc:2.5, step:2.5,
-   cue:{en:"Elbows pinned to your sides.", de:"Ellbogen fest am Körper."}}),
- bss:X({id:"bss", fig:"bss", name:{en:"Bulgarian split squat, glute focus", de:"Bulgarian Split Squat, Po-Fokus"}, sets:3, reps:{en:"8–12/leg",de:"8–12/Bein"}, rest:"90 s", main:1, start:12, inc:2, step:1, per:{en:"per hand",de:"pro Hand"},
-   cue:{en:"Long stance, lean forward about 30°, push through the front heel.", de:"Langer Stand, Oberkörper ca. 30° nach vorn, über die vordere Ferse drücken."}}),
- pal:X({id:"pal", fig:"g3", name:{en:"Pallof press", de:"Pallof Press"}, sets:3, reps:{en:"10/side",de:"10/Seite"}, rest:"—", inc:2.5, step:2.5,
-   cue:{en:"Don't let the cable twist you. Brace like a plank.", de:"Lass dich vom Kabel nicht verdrehen. Spannung wie im Plank."}}),
- sq:X({id:"sq", fig:"sq", name:{en:"Smith machine squat", de:"Kniebeuge an der Smith-Maschine"}, sets:3, reps:"8–12", rest:"90 s", start:12.5, inc:2.5, step:2.5, per:{en:"per side",de:"pro Seite"},
-   cue:{en:"Feet slightly forward, sit down between your heels.", de:"Füße leicht nach vorn, zwischen die Fersen setzen."}}),
- ckb:X({id:"ckb", fig:"ckb", name:{en:"Cable kickback", de:"Kickbacks am Kabel"}, sets:2, reps:{en:"12–15/leg",de:"12–15/Bein"}, rest:"—", start:10, inc:2.5, step:2.5,
-   cue:{en:"Kick back and slightly out. No arching.", de:"Nach hinten und leicht nach außen. Kein Hohlkreuz."}}),
- pt:X({id:"pt", fig:"pt", name:{en:"Cable pull-through", de:"Pull-Through am Kabel"}, sets:3, reps:"12–15", rest:"75 s", start:22.5, inc:2.5, step:2.5,
-   cue:{en:"Hips back, then snap forward and squeeze.", de:"Hüfte nach hinten, dann kraftvoll nach vorn und anspannen."}}),
- lex:X({id:"lex", fig:"lex", name:{en:"Leg extension", de:"Beinstrecker"}, sets:3, reps:"10–15", rest:"—", start:27.5, inc:2.5, step:2.5,
-   cue:{en:"Lower slowly, 3 seconds.", de:"Langsam ablassen, 3 Sekunden."}}),
- htm:X({id:"htm", fig:"htm", name:{en:"Glute bridge machine", de:"Glute-Bridge-Maschine"}, sets:3, reps:"15–20", rest:"60 s", inc:5, step:5,
-   cue:{en:"Light and controlled. Chase the squeeze.", de:"Leicht und kontrolliert. Auf die Spannung achten."}}),
- clr:X({id:"clr", fig:"clr", name:{en:"Cable lateral raise", de:"Seitheben am Kabel"}, sets:3, reps:"15", rest:"—", inc:2.5, step:2.5,
-   cue:{en:"Smooth, no swinging.", de:"Gleichmäßig, ohne Schwung."}}),
- fp:X({id:"fp", fig:"fp", name:{en:"Face pull", de:"Face Pulls"}, sets:2, reps:"15", rest:"—", inc:2.5, step:2.5,
-   cue:{en:"Pull to your forehead, elbows high.", de:"Zur Stirn ziehen, Ellbogen hoch."}})
+ sht:{id:"sht", fig:"bht", uni:1, main:1, name:C("Single-leg dumbbell hip thrust","Einbeiniger Hip Thrust mit Kurzhantel"), sets:3, reps:"8–12", rest:"60 s", start:14, inc:2, step:2,
+   cue:C("Upper back on the bench, dumbbell on the working hip. Hold 2 seconds at the top. One leg makes 20 kg feel like 40.","Oberer Rücken auf der Bank, Hantel auf der arbeitenden Hüfte. Oben 2 Sekunden halten. Einbeinig fühlen sich 20 kg wie 40 an."),
+   alt:{id:"brgdb", fig:"brg", uni:0, name:C("Dumbbell glute bridge (floor)","Glute Bridge mit Kurzhantel (Boden)"), reps:"12–15", cue:C("Back-friendly: shoulders stay on the floor. Hold 2 seconds at the top.","Rückenfreundlich: Schultern bleiben am Boden. Oben 2 Sekunden halten.")}},
+ dbg:{id:"dbg", fig:"deadbug", name:C("Dead bug","Dead Bug"), sets:3, reps:"8", unit:"bw", rest:"—", cue:C("Press your lower back into the floor the whole time.","Unteren Rücken die ganze Zeit in den Boden drücken.")},
+ gob:{id:"gob", fig:"bwsq", name:C("Goblet squat, slow tempo","Goblet Squat, langsames Tempo"), sets:3, reps:"10–15", rest:"75 s", start:20, inc:2, step:2,
+   cue:C("3 seconds down, 1-second pause at the bottom. When 15 reps feel easy, pause 2 seconds.","3 Sekunden runter, 1 Sekunde Pause unten. Wenn 15 Wdh. leicht sind: 2 Sekunden Pause.")},
+ cabd:{id:"cabd", fig:"abd", uni:1, name:C("Cable hip abduction, standing","Abduktion am Kabel, stehend"), sets:3, reps:"12–15", rest:"—", inc:2.5, step:2.5,
+   cue:C("Ankle cuff on the outer leg, slight forward lean, lift the leg out slowly.","Manschette am äußeren Bein, leicht nach vorn lehnen, Bein langsam seitlich heben.")},
+ rdl:{id:"rdl", fig:"rdldb", uni:1, name:C("B-stance dumbbell RDL","B-Stance Kurzhantel-RDL"), sets:3, reps:"10–12", rest:"60 s", start:14, inc:2, step:1, per:PH,
+   cue:C("Front leg does the work, back foot only for balance. Hips back, flat back.","Das vordere Bein arbeitet, das hintere nur zur Balance. Hüfte nach hinten, Rücken gerade."),
+   alt:{id:"cpt", fig:"pt", uni:0, name:C("Cable pull-through","Pull-Through am Kabel"), reps:"12–15", cue:C("Back-friendly hinge. Hips back, then snap forward.","Rückenfreundliches Hüftbeugen. Hüfte nach hinten, dann nach vorn.")}},
+ lcurl:{id:"lcurl", fig:"slc", main:0, name:C("Leg curl machine","Beinbeuger-Maschine"), sets:3, reps:"10–15", rest:"60 s", inc:2.5, step:2.5,
+   cue:C("Lean slightly forward, curl hard, lower in 3 seconds.","Leicht nach vorn lehnen, kräftig beugen, in 3 Sekunden zurück.")},
+ bss:{id:"bss", fig:"bss", uni:1, main:1, name:C("Bulgarian split squat, glute focus","Bulgarian Split Squat, Po-Fokus"), sets:3, reps:"8–12", rest:"60 s", start:12, inc:2, step:1, per:PH,
+   cue:C("Long stance, lean forward about 30°, push through the front heel.","Langer Stand, Oberkörper ca. 30° nach vorn, über die vordere Ferse drücken.")},
+ pal:{id:"pal", fig:"g3", name:C("Cable Pallof press","Pallof Press am Kabel"), sets:3, reps:"10", rest:"—", inc:2.5, step:2.5,
+   cue:C("Don't let the cable twist you. Brace like a plank.","Lass dich vom Kabel nicht verdrehen. Spannung wie im Plank.")},
+ pt:{id:"pt", fig:"pt", name:C("Cable pull-through","Pull-Through am Kabel"), sets:3, reps:"12–15", rest:"—", start:22.5, inc:2.5, step:2.5,
+   cue:C("Hips back, then snap forward and squeeze.","Hüfte nach hinten, dann kraftvoll nach vorn und anspannen.")},
+ lex:{id:"lex", fig:"lex", name:C("Leg extension","Beinstrecker"), sets:3, reps:"10–15", rest:"75 s", start:27.5, inc:2.5, step:2.5,
+   cue:C("Lower slowly, 3 seconds.","Langsam ablassen, 3 Sekunden.")},
+ lun:{id:"lun", fig:"lunge", uni:1, name:C("Walking lunges","Ausfallschritte gehend"), sets:2, reps:"10–12", rest:"—", start:12, inc:2, step:1, per:PH,
+   cue:C("Long steps, torso slightly forward.","Lange Schritte, Oberkörper leicht nach vorn.")},
+ ckb:{id:"ckb", fig:"ckb", uni:1, name:C("Cable kickback","Kickbacks am Kabel"), sets:2, reps:"12–15", rest:"60 s", start:10, inc:2.5, step:2.5,
+   cue:C("Kick back and slightly out. No arching.","Nach hinten und leicht nach außen. Kein Hohlkreuz.")},
+ idp:{id:"idp", fig:"idp", main:1, name:C("Incline dumbbell press","Schrägbankdrücken (Kurzhanteln)"), sets:3, reps:"8–12", rest:"—", start:10, inc:1, step:1, per:PH,
+   cue:C("Bench at 30°. Lower slowly to chest level.","Bank auf 30°. Langsam bis auf Brusthöhe senken.")},
+ lpd:{id:"lpd", fig:"lpd", main:1, name:C("Cable lat pulldown","Latzug am Kabel"), sets:3, reps:"8–12", rest:"75 s", inc:2.5, step:2.5,
+   cue:C("Pull your elbows down toward your back pockets, chest up.","Ellbogen Richtung Gesäßtaschen ziehen, Brust raus."), note:C("New: builds back width so the waist looks smaller.","Neu: macht den Rücken breiter, die Taille wirkt schmaler.")},
+ row:{id:"row", fig:"row", name:C("Seated cable row","Rudern am Kabel (sitzend)"), sets:3, reps:"8–12", rest:"—", start:30, inc:2.5, step:2.5,
+   cue:C("Squeeze your shoulder blades together at the end of each rep.","Am Ende jeder Wdh. die Schulterblätter zusammenziehen."), note:C("Time to go heavier: 30 kg.","Zeit für mehr Gewicht: 30 kg.")},
+ lr:{id:"lr", fig:"lr", name:C("Dumbbell lateral raise","Seitheben (Kurzhanteln)"), sets:3, reps:"12–20", rest:"60 s", start:6, inc:1, step:1, per:PH,
+   cue:C("Lead with the elbows and stop at shoulder height.","Mit den Ellbogen führen, auf Schulterhöhe stoppen.")},
+ cpo:{id:"cpo", fig:"cpo", name:C("Cable straight-arm pulldown","Pullover am Kabel"), sets:2, reps:"12–15", rest:"60 s", start:15, inc:2.5, step:2.5,
+   cue:C("Arms long, pull down to your thighs.","Arme lang, bis zu den Oberschenkeln ziehen.")},
+ curl:{id:"curl", fig:"curl", name:C("Cable curl","Bizepscurls am Kabel"), sets:2, reps:"10–15", rest:"—", inc:2.5, step:2.5,
+   cue:C("Elbows still, slow on the way down.","Ellbogen ruhig, langsam ablassen.")},
+ tpd:{id:"tpd", fig:"tpd", name:C("Cable triceps pushdown","Trizepsdrücken am Kabel"), sets:2, reps:"10–15", rest:"60 s", start:12.5, inc:2.5, step:2.5,
+   cue:C("Elbows pinned to your sides.","Ellbogen fest am Körper.")},
+ htd:{id:"htd", fig:"bht", name:C("Dumbbell hip thrust, both legs","Hip Thrust mit Kurzhantel, beidbeinig"), sets:3, reps:"15–20", rest:"—", start:20, inc:2, step:2,
+   cue:C("Light and controlled. 2-second squeeze at the top.","Leicht und kontrolliert. Oben 2 Sekunden anspannen.")},
+ clr:{id:"clr", fig:"clr", uni:1, name:C("Cable lateral raise","Seitheben am Kabel"), sets:3, reps:"12–15", rest:"45 s", inc:2.5, step:2.5,
+   cue:C("One arm at a time, smooth, no swinging.","Ein Arm nach dem anderen, gleichmäßig, ohne Schwung.")},
+ fp:{id:"fp", fig:"fp", name:C("Cable face pull","Face Pulls am Kabel"), sets:2, reps:"15", rest:"45 s", inc:2.5, step:2.5,
+   cue:C("Rope at face height, pull to your forehead, elbows high.","Seil auf Gesichtshöhe, zur Stirn ziehen, Ellbogen hoch.")}
+};
+const SWAPS = {
+ sht:[{key:"two",fig:"bht",uni:0,name:C("Hip thrust with dumbbell, both legs, 3-s hold","Hip Thrust mit Kurzhantel, beidbeinig, 3 s halten"),start:20,inc:2,step:2,cue:C("Easier option. Hold 3 seconds at the top of every rep.","Leichtere Option. Bei jeder Wdh. oben 3 Sekunden halten.")},
+      {key:"brg",fig:"brg",uni:0,name:C("Dumbbell glute bridge (floor)","Glute Bridge mit Kurzhantel (Boden)"),reps:"12–15",start:20,inc:2,step:2,cue:C("No bench needed. Squeeze 2 seconds at the top.","Keine Bank nötig. Oben 2 Sekunden anspannen.")},
+      {key:"cpt",fig:"pt",uni:0,name:C("Cable pull-through","Pull-Through am Kabel"),reps:"12–15",start:22.5,inc:2.5,step:2.5,cue:C("Hips back, then snap forward and squeeze.","Hüfte nach hinten, dann kraftvoll nach vorn.")}],
+ dbg:[{key:"plank",fig:"spl",unit:"bw",name:C("Forearm plank","Unterarmstütz"),reps:C("30–45 s","30–45 s"),cue:C("Body in one line, squeeze glutes and belly.","Körper in einer Linie, Po und Bauch anspannen.")},
+      {key:"pal",fig:"g3",name:C("Cable Pallof press","Pallof Press am Kabel"),reps:"10",inc:2.5,step:2.5,cue:C("Don't let the cable twist you.","Lass dich vom Kabel nicht verdrehen.")}],
+ gob:[{key:"cgob",fig:"bwsq",name:C("Cable goblet squat","Goblet Squat am Kabel"),inc:2.5,step:2.5,cue:C("Low pulley, hold the handle at your chest, sit back and down.","Unterer Zug, Griff an der Brust halten, nach hinten unten setzen.")},
+      {key:"box",fig:"bwsq",unit:"bw",name:C("Squat to bench, slow","Kniebeuge auf die Bank, langsam"),reps:"12–15",cue:C("Easier option: sit to the bench in 3 seconds, stand up strong.","Leichtere Option: in 3 Sekunden auf die Bank setzen, kräftig aufstehen.")},
+      {key:"step",fig:"stu",uni:1,name:C("Dumbbell step-up","Step-up mit Kurzhanteln"),reps:"10–12",start:8,inc:2,step:1,per:PH,cue:C("Bench or box at knee height. Push through the top foot only.","Bank oder Box auf Kniehöhe. Nur über das obere Bein drücken.")}],
+ cabd:[{key:"band",fig:"abd",uni:0,unit:"bw",name:C("Seated band abduction","Abduktion mit Band, sitzend"),reps:"20–30",cue:C("Band above your knees, lean forward, push your knees out.","Band über den Knien, nach vorn lehnen, Knie nach außen drücken.")},
+       {key:"side",fig:"spl",uni:1,unit:"bw",name:C("Side-lying leg raise","Seitliches Beinheben im Liegen"),reps:"15–20",cue:C("Toes slightly down, lift the top leg slowly.","Zehen leicht nach unten, oberes Bein langsam heben.")}],
+ rdl:[{key:"two",fig:"rdldb",uni:0,name:C("Dumbbell RDL, both legs","Kurzhantel-RDL, beidbeinig"),start:20,inc:2,step:2,per:PH,cue:C("Easier option. Hips back, soft knees, dumbbells close to your legs.","Leichtere Option. Hüfte nach hinten, Knie leicht gebeugt, Hanteln nah am Bein.")},
+      {key:"cable",fig:"pt",uni:0,name:C("Cable Romanian deadlift","Rumänisches Kreuzheben am Kabel"),inc:2.5,step:2.5,cue:C("Low pulley, face the machine, hinge at the hips.","Unterer Zug, zur Maschine schauen, aus der Hüfte beugen.")}],
+ lcurl:[{key:"cable",fig:"ckb",uni:1,name:C("Standing cable leg curl","Beinbeugen am Kabel, stehend"),inc:2.5,step:2.5,cue:C("Ankle cuff, knee stays still, curl the heel to your glutes.","Manschette am Knöchel, Knie bleibt ruhig, Ferse zum Po.")},
+        {key:"slb",fig:"brg",uni:1,unit:"bw",name:C("Single-leg glute bridge","Einbeinige Glute Bridge"),reps:"10–15",cue:C("No equipment. Heel close to your hips, push up through the heel.","Ohne Gerät. Ferse nah am Po, über die Ferse hochdrücken.")}],
+ bss:[{key:"split",fig:"lunge",name:C("Static split squat","Split Squat (statisch)"),start:12,inc:2,step:1,per:PH,cue:C("Easier option: back foot on the floor, go straight down.","Leichtere Option: hinterer Fuß am Boden, gerade runter.")},
+      {key:"rev",fig:"lunge",name:C("Reverse lunges","Ausfallschritte rückwärts"),start:12,inc:2,step:1,per:PH,cue:C("Step back, front heel stays down. Easy on the knees.","Schritt nach hinten, vordere Ferse bleibt unten. Knieschonend.")},
+      {key:"step",fig:"stu",name:C("Dumbbell step-up","Step-up mit Kurzhanteln"),start:8,inc:2,step:1,per:PH,cue:C("Push through the top foot only.","Nur über das obere Bein drücken.")}],
+ pal:[{key:"plank",fig:"spl",uni:1,unit:"bw",name:C("Side plank","Seitstütz"),reps:C("30 s","30 s"),cue:C("Hips high, body in one line.","Hüfte hoch, Körper in einer Linie.")},
+      {key:"dbg",fig:"deadbug",unit:"bw",name:C("Dead bug","Dead Bug"),reps:"8",cue:C("Lower back stays on the floor.","Unterer Rücken bleibt am Boden.")}],
+ pt:[{key:"db",fig:"rdldb",name:C("Dumbbell RDL, both legs","Kurzhantel-RDL, beidbeinig"),start:20,inc:2,step:2,per:PH,cue:C("Hips back, soft knees, squeeze your glutes at the top.","Hüfte nach hinten, Knie leicht gebeugt, oben Po anspannen.")},
+     {key:"brg",fig:"brg",name:C("Dumbbell glute bridge (floor)","Glute Bridge mit Kurzhantel (Boden)"),start:20,inc:2,step:2,cue:C("Squeeze 2 seconds at the top.","Oben 2 Sekunden anspannen.")}],
+ lex:[{key:"span",fig:"bwsq",unit:"bw",name:C("Spanish squat with band","Spanish Squat mit Band"),reps:"12–15",cue:C("Band behind your knees, sit back, shins upright.","Band hinter den Knien, nach hinten setzen, Schienbeine senkrecht.")},
+      {key:"step",fig:"stu",uni:1,name:C("Dumbbell step-up","Step-up mit Kurzhanteln"),reps:"10–12",start:8,inc:2,step:1,per:PH,cue:C("Push through the top foot only.","Nur über das obere Bein drücken.")}],
+ lun:[{key:"rev",fig:"lunge",name:C("Reverse lunges","Ausfallschritte rückwärts"),start:12,inc:2,step:1,per:PH,cue:C("Step back, front heel stays down. Easy on the knees.","Schritt nach hinten, vordere Ferse bleibt unten. Knieschonend.")},
+      {key:"split",fig:"lunge",name:C("Static split squat","Split Squat (statisch)"),start:12,inc:2,step:1,per:PH,cue:C("Feet stay in place, go straight down and up.","Füße bleiben stehen, gerade runter und hoch.")},
+      {key:"bw",fig:"lunge",unit:"bw",name:C("Bodyweight lunges, slow","Ausfallschritte ohne Gewicht, langsam"),cue:C("Easier option: 3 seconds down.","Leichtere Option: 3 Sekunden runter.")}],
+ ckb:[{key:"band",fig:"ckb",unit:"bw",name:C("Banded kickback","Kickbacks mit Band"),reps:"15–20",cue:C("Band around your feet, kick back and slightly out.","Band um die Füße, nach hinten und leicht außen.")},
+      {key:"donkey",fig:"ckb",unit:"bw",name:C("Donkey kicks (on all fours)","Donkey Kicks (Vierfüßlerstand)"),reps:"15–20",cue:C("Knee bent 90°, push the heel to the ceiling.","Knie 90° gebeugt, Ferse zur Decke drücken.")}],
+ idp:[{key:"cable",fig:"idp",name:C("Standing cable chest press","Brustpresse am Kabel, stehend"),inc:2.5,step:2.5,cue:C("Step forward, press both handles straight ahead.","Schritt nach vorn, beide Griffe gerade nach vorn drücken.")},
+      {key:"push",fig:"idp",unit:"bw",name:C("Incline push-ups (hands on bench)","Schräge Liegestütze (Hände auf der Bank)"),reps:"8–15",cue:C("Body in one line, chest to the bench.","Körper in einer Linie, Brust zur Bank.")},
+      {key:"flat",fig:"idp",name:C("Flat dumbbell press","Kurzhantel-Bankdrücken (flach)"),start:10,inc:1,step:1,per:PH,cue:C("Lower slowly to chest level.","Langsam bis auf Brusthöhe senken.")}],
+ lpd:[{key:"one",fig:"lpd",uni:1,name:C("Half-kneeling single-arm cable pulldown","Einarmiger Latzug am Kabel, kniend"),inc:2.5,step:2.5,cue:C("Kneel under the high pulley, pull your elbow down to your hip.","Unter dem oberen Zug knien, Ellbogen zur Hüfte ziehen.")},
+      {key:"sap",fig:"cpo",name:C("Cable straight-arm pulldown","Pullover am Kabel"),inc:2.5,step:2.5,cue:C("Arms long, pull down to your thighs.","Arme lang, bis zu den Oberschenkeln ziehen.")}],
+ row:[{key:"db1",fig:"sar",uni:1,name:C("One-arm dumbbell row","Einarmiges Kurzhantelrudern"),start:14,inc:2,step:1,cue:C("Knee and hand on the bench, pull the dumbbell to your hip.","Knie und Hand auf der Bank, Hantel zur Hüfte ziehen.")},
+      {key:"one",fig:"row",uni:1,name:C("Standing single-arm cable row","Einarmiges Rudern am Kabel, stehend"),inc:2.5,step:2.5,cue:C("Staggered stance, pull the handle to your hip.","Schrittstellung, Griff zur Hüfte ziehen.")}],
+ lr:[{key:"cable",fig:"clr",uni:1,name:C("Cable lateral raise","Seitheben am Kabel"),inc:2.5,step:2.5,cue:C("One arm at a time, smooth.","Ein Arm nach dem anderen, gleichmäßig.")},
+     {key:"light",fig:"lr",name:C("Lighter lateral raise, slow","Leichtes Seitheben, langsam"),start:4,inc:1,step:1,per:PH,cue:C("Easier option: lighter weight, 3 seconds down.","Leichtere Option: weniger Gewicht, 3 Sekunden runter.")}],
+ cpo:[{key:"db",fig:"dpo",name:C("Dumbbell pullover on bench","Kurzhantel-Pullover auf der Bank"),start:10,inc:2,step:1,cue:C("Slight bend in the elbows, feel the stretch in your back.","Ellbogen leicht gebeugt, Dehnung im Rücken spüren.")},
+      {key:"band",fig:"cpo",unit:"bw",name:C("Band straight-arm pulldown","Band-Pulldown mit gestreckten Armen"),reps:"15–20",cue:C("Arms long, pull the band to your thighs.","Arme lang, Band bis zu den Oberschenkeln ziehen.")}],
+ curl:[{key:"db",fig:"curl",name:C("Dumbbell curl","Bizepscurls (Kurzhanteln)"),start:9,inc:1,step:1,per:PH,cue:C("Elbows still, no swinging.","Ellbogen ruhig, kein Schwung.")},
+       {key:"ham",fig:"curl",name:C("Hammer curl","Hammercurls"),start:8,inc:1,step:1,per:PH,cue:C("Thumbs up, elbows still.","Daumen nach oben, Ellbogen ruhig.")}],
+ tpd:[{key:"oh",fig:"tpd",name:C("Overhead cable triceps extension","Trizepsstrecken über Kopf am Kabel"),inc:2.5,step:2.5,cue:C("Face away from the machine, elbows point forward.","Mit dem Rücken zur Maschine, Ellbogen nach vorn.")},
+      {key:"db",fig:"tpd",name:C("Overhead dumbbell triceps extension","Trizepsstrecken über Kopf (Kurzhantel)"),start:8,inc:1,step:1,cue:C("Lower the dumbbell behind your head.","Hantel hinter den Kopf senken.")}],
+ htd:[{key:"brg",fig:"brg",name:C("Dumbbell glute bridge (floor)","Glute Bridge mit Kurzhantel (Boden)"),start:20,inc:2,step:2,cue:C("Squeeze 2 seconds at the top.","Oben 2 Sekunden anspannen.")},
+      {key:"cpt",fig:"pt",name:C("Cable pull-through","Pull-Through am Kabel"),start:22.5,inc:2.5,step:2.5,cue:C("Hips back, then snap forward.","Hüfte nach hinten, dann nach vorn.")}],
+ clr:[{key:"db",fig:"lr",uni:0,name:C("Dumbbell lateral raise","Seitheben (Kurzhanteln)"),start:5,inc:1,step:1,per:PH,cue:C("Lead with the elbows.","Mit den Ellbogen führen.")}],
+ fp:[{key:"band",fig:"pa",unit:"bw",name:C("Band pull-apart","Band Pull-Apart"),reps:"15–20",cue:C("Arms straight, pull the band to your chest.","Arme gestreckt, Band zur Brust ziehen.")},
+     {key:"rdf",fig:"rdf",name:C("Rear delt fly (dumbbells)","Reverse Flys (Kurzhanteln)"),start:4,inc:1,step:1,per:PH,cue:C("Hinge forward, lift the arms out wide.","Nach vorn beugen, Arme weit seitlich heben.")}]
 };
 const W = (fig,en,de,dur) => ({fig,name:{en,de},dur});
-const WARM_LOW=[W("brg","Glute bridge","Glute Bridge","15"),W("hinge","Hip hinge","Hüftbeuge","10"),W("bwsq","Bodyweight squat","Kniebeuge ohne Gewicht","10")];
+const CARDIO = W("row","Rower, bike or arc trainer, easy","Rudergerät, Rad oder Arc Trainer, locker","2 min");
+const WARM_LOW=[CARDIO,W("brg","Glute bridge","Glute Bridge","15"),W("bwsq","Bodyweight squat","Kniebeuge ohne Gewicht","10")];
 const DAYS = {
  la:{c:"--la", name:{en:"Lower A",de:"Unterkörper A"}, sub:{en:"Glutes · hip thrust",de:"Po · Hip Thrust"}, lower:1,
-   blocks:[[EX.ht,EX.dbg],[EX.lp,EX.abd],[EX.rdl],[EX.lun]], warm:WARM_LOW,
+   blocks:[[EX.sht,EX.dbg],[EX.gob,EX.cabd],[EX.rdl,EX.lcurl]], warm:WARM_LOW,
    cool:[W("hfs","Hip flexor stretch","Hüftbeuger-Dehnung","30 s"),W("fig4","Figure-4 glute stretch","Po-Dehnung (Figur 4)","30 s"),W("child","Child's pose","Kindhaltung","45 s")]},
  up:{c:"--up", name:{en:"Upper",de:"Oberkörper"}, sub:{en:"Back · shoulders · arms",de:"Rücken · Schultern · Arme"},
    blocks:[[EX.idp,EX.lpd],[EX.row,EX.lr],[EX.cpo],[EX.curl,EX.tpd]],
-   warm:[W("circles","Arm circles","Armkreisen","20"),W("pa","Band pull-apart","Band Pull-Apart","15"),W("idp","Light warm-up set","Leichter Aufwärmsatz","10")],
+   warm:[CARDIO,W("circles","Arm circles","Armkreisen","20"),W("pa","Band pull-apart","Band Pull-Apart","15")],
    cool:[W("chs","Chest stretch","Brustdehnung","30 s"),W("lats","Lat stretch","Latissimus-Dehnung","30 s"),W("child","Child's pose","Kindhaltung","45 s")]},
  lb:{c:"--lb", name:{en:"Lower B",de:"Unterkörper B"}, sub:{en:"Glutes · quads",de:"Po · Oberschenkel"}, lower:1,
-   blocks:[[EX.bss,EX.pal],[EX.sq,EX.ckb],[EX.pt,EX.lex]], warm:WARM_LOW,
+   blocks:[[EX.bss,EX.pal],[EX.pt,EX.lex],[EX.lun,EX.ckb]], warm:WARM_LOW,
    cool:[W("hfs","Hip flexor stretch","Hüftbeuger-Dehnung","30 s"),W("hams","Hamstring stretch","Beinrückseiten-Dehnung","30 s"),W("fig4","Figure-4 glute stretch","Po-Dehnung (Figur 4)","30 s")]},
  pp:{c:"--pp", name:{en:"Pump",de:"Pump"}, sub:{en:"Optional · 20 min",de:"Optional · 20 Min."}, light:1,
-   blocks:[[EX.htm,EX.clr],[{...EX.abd, sets:2, reps:"20"},EX.fp],[{...EX.curl, reps:"12–15"}]],
-   warm:[W("brg","Glute bridge","Glute Bridge","15"),W("circles","Arm circles","Armkreisen","20")],
+   blocks:[[EX.htd,EX.clr],[{...EX.cabd, sets:2, reps:"15–20"},EX.fp],[{...EX.curl, reps:"12–15"}]],
+   warm:[CARDIO,W("brg","Glute bridge","Glute Bridge","15")],
    cool:[W("child","Child's pose","Kindhaltung","45 s")]}
 };
 const DAY_ORDER = ["la","up","lb","pp"];
-const ANCHORS = [["ht","--la"],["lp","#8A6A3A"],["rdl","#9C7A4A"],["bss","--lb"],["sq","#D29A7E"],["idp","--up"],["lpd","#8B76A8"],["row","--pp"]];
-const ALLEX = {}; Object.values(EX).forEach(e=>{ ALLEX[e.id]=e; if(e.alt) ALLEX[e.alt.id] = ALLEX[e.alt.id] || {...e, ...e.alt}; });
+const ANCHORS = [["sht","--la"],["gob","#8A6A3A"],["rdl","#9C7A4A"],["bss","--lb"],["lcurl","#D29A7E"],["idp","--up"],["lpd","#8B76A8"],["row","--pp"]];
+const ALLEX = {}; Object.values(EX).forEach(e=>{ ALLEX[e.id]=e; if(e.alt) ALLEX[e.alt.id] = ALLEX[e.alt.id] || {...e, ...e.alt}; (SWAPS[e.id]||[]).forEach(v=>{ ALLEX[e.id+"__"+v.key]={...e,...v,id:e.id+"__"+v.key}; }); });
 
 /* ---------------- state ---------------- */
 const DEF = {profile:{sex:"",age:"",height:"",weight:"",activity:"",goal:"",song:""}, cycle:{start:"",len:"",plen:"",off:false},
-  measures:[], supps:{qty:{}, custom:[]}, meds:[], medsInReport:false, sessions:{}, prs:[],
+  measures:[], swaps:{}, supps:{qty:{}, custom:[]}, meds:[], medsInReport:false, sessions:{}, prs:[],
   ui:{lang:(navigator.language||"de").toLowerCase().startsWith("de")?"de":"en", tab:"train", block:1, week:1, day:"la", theme:""}};
 let S;
 try{ S = JSON.parse(localStorage.getItem(LS)||"null"); }catch(e){ S=null; }
@@ -726,7 +810,11 @@ function sessionCtx(){
   const s=sess(false)||{}, ci=s.checkin||{}, day=DAYS[S.ui.day];
   return {week:S.ui.week, energy:ci.energy||"high", period:!!ci.period, back:day.lower?(+ci.back||0):0, light:!!day.light, short:ci.energy==="low"};
 }
-function exFor(e, ctx){ return (ctx.back>3 && e.alt) ? {...e, ...e.alt, alt:null, swapped:true} : e; }
+function exFor(e, ctx){
+  if(ctx.back>3 && e.alt) return {...e, ...e.alt, alt:null, base:e.id, backSwap:true};
+  const key=S.swaps[e.id], v=(SWAPS[e.id]||[]).find(x=>x.key===key);
+  return v ? {...e, ...v, id:e.id+"__"+v.key, base:e.id} : {...e, base:e.id};
+}
 function presc(e, ctx){
   let sets=e.sets;
   if(e.main && ctx.week>=3 && ctx.week<=5) sets++;
@@ -736,21 +824,26 @@ function presc(e, ctx){
   const rir = (ctx.week===6||ctx.period) ? "3" : ctx.light ? "2–3" : ctx.energy==="high" ? "1–2" : "2–3";
   return {sets, rir};
 }
-function allEntries(id){ // chronological entries for an exercise across sessions
-  const out=[]; for(const k in S.sessions){ const en=S.sessions[k].ex?.[id]; if(en && num(en.w)!=null && num(en.r)!=null) out.push({...en,k}); }
-  return out.sort((a,b)=>(a.t||0)-(b.t||0));
+function setsOf(en){ if(!en) return []; if(Array.isArray(en.sets)) return en.sets; if(en.w!=null||en.r!=null) return [{w:en.w,r:en.r,ok:true}]; return []; }
+function bestOf(en){ let b=null; setsOf(en).forEach(st=>{ const r=num(st.r); if(!st.ok||r==null) return; const w=num(st.w)??0, v=e1(w,r); if(!b||v>b.v) b={w,r,v}; }); return b; }
+function allEntries(id){
+  const out=[]; for(const k in S.sessions){ const en=S.sessions[k].ex?.[id], b=bestOf(en); if(b) out.push({sets:setsOf(en).filter(x=>x.ok), rir:en.rir, t:en.t||0, k, w:b.w, r:b.r, v:b.v}); }
+  return out.sort((a,b)=>a.t-b.t);
 }
 function lastBefore(id){ const k=skey(); const list=allEntries(id).filter(e=>e.k!==k); return list[list.length-1]||null; }
+const setsText = sets => sets.map(st=>(st.side?st.side+" ":"")+(num(st.w)?fmt(num(st.w))+"×":"")+st.r).join(", ");
 function suggestion(e, ctx){
-  if(e.unit==="bw") { const l=lastBefore(e.id); return l?{last:l}:{}; }
   const l=lastBefore(e.id);
-  if(!l){ if(e.start) return {tgt:t("startG",{w:fmt(e.start)})+(e.per?" "+N(e.per):"")}; return {tgt:t("firstTime")}; }
-  const w=num(l.w), r=num(l.r), top=topOf(e.reps), rir=l.rir;
-  if(ctx.week===6) return {last:l, tgt:t("dl",{w:fmt(roundTo(w*0.9,e.step||1))})};
-  if(ctx.energy!=="high"||ctx.period) return {last:l, tgt:t("keep",{w:fmt(w)})};
-  if((top && r>=top) || rir==="3") return {last:l, tgt:t("goUp",{w:fmt(w+(e.inc||2.5))}), up:true};
-  return {last:l, tgt:t("stay",{w:fmt(w),r:Math.min(top||r+1, r+1)})};
+  if(e.unit==="bw") return l?{last:l}:{};
+  if(!l){ if(e.start) return {tgt:t("startG",{w:fmt(e.start)})+(e.per?" "+N(e.per):""), w:e.start}; return {tgt:t("firstTime")}; }
+  const top=topOf(e.reps), ws=l.sets.map(x=>num(x.w)).filter(x=>x!=null), w=ws.length?(e.assist?Math.min(...ws):Math.max(...ws)):l.w;
+  const atW=l.sets.filter(x=>num(x.w)===w), allHit=top && atW.length>=2 && atW.every(x=>num(x.r)>=top);
+  if(ctx.week===6){ const dw=e.assist?w+(e.step||5):roundTo(w*0.9,e.step||1); return {last:l, tgt:t("dl",{w:fmt(dw)}), w:dw}; }
+  if(ctx.energy!=="high"||ctx.period) return {last:l, tgt:t("keep",{w:fmt(w)}), w};
+  if(allHit || l.rir==="3"){ const nw=Math.max(0,w+(e.inc||2.5)); return {last:l, tgt:t(e.assist?"lessHelp":"goUp",{w:fmt(nw)}), w:nw, up:true}; }
+  return {last:l, tgt:t("stayAll",{w:fmt(w),r:top||""}), w};
 }
+const restSec = r => { const m=String(r||"").match(/(\d+)\s*(min|s)?/); if(!m) return 60; return m[2]==="min"?+m[1]*60:+m[1]; };
 
 /* ---------------- figures ---------------- */
 const figVis=new Set(); let figObs=null, colCache=new WeakMap();
@@ -766,7 +859,7 @@ function initFigs(root){
   else svgs.forEach(s=>figVis.add(s));
 }
 let lastF=0;
-function loop(now){ requestAnimationFrame(loop); tickTimer(); if(!reduce() && now-(loop._s||0)>40){ loop._s=now; paintScene(now); } if(now-lastF<33||reduce()) return; lastF=now; let i=0;
+function loop(now){ requestAnimationFrame(loop); tickTimer(); if(now-(loop._r||0)>250){ loop._r=now; tickRest(); } if(!reduce() && now-(loop._s||0)>40){ loop._s=now; paintScene(now); } if(now-lastF<33||reduce()) return; lastF=now; let i=0;
   figVis.forEach(svg=>{ const tt=now/1000/2.8+(i++)*0.13, raw=(1-Math.cos(2*Math.PI*tt))/2, x=Math.min(1,Math.max(0,(raw-0.08)/0.84)); drawFig(svg,x*x*(3-2*x)); }); }
 requestAnimationFrame(loop);
 const yt = name => "https://www.youtube.com/results?search_query="+encodeURIComponent(name+" how to");
@@ -816,20 +909,35 @@ function renderTrain(){
     const letter="ABCD"[bi];
     h+=`<div class="block" style="--c:var(${day.c})"><div class="block-h"><span>${letter} · ${blk.length>1?t("superset"):t("single")}</span></div>`;
     blk.forEach((e0,ei)=>{
-      const e=exFor(e0,ctx), p=presc(e,ctx), en=s.ex[e.id]||{}, sg=suggestion(e,ctx), nm=N(e.name);
-      h+=`<div class="ex${en.done?" is-done":""}" data-ex="${e.id}">
-        <div class="fig"><svg viewBox="0 0 120 100" data-fig="${e.fig}" role="img" aria-label="${esc(nm)}"></svg><a href="${yt(N({en:e.name.en,de:e.name.en}))}" target="_blank" rel="noopener">${t("video")}</a></div>
+      const e=exFor(e0,ctx), p=presc(e,ctx), en=s.ex[e.id]||{}, sg=suggestion(e,ctx), nm=N(e.name), bw=e.unit==="bw";
+      const uni=!!e.uni, per=uni?2:1, sts=setsOf(en), nRows=Math.max(p.sets*per, sts.length), nSets=Math.ceil(nRows/per);
+      let curI=-1; for(let i=0;i<nRows;i++){ if(!(sts[i]&&sts[i].ok)){ curI=i; break; } }
+      const opts=SWAPS[e0.id]||[], chosen=S.swaps[e0.id]||"";
+      const rest=restSec((blk[0]&&blk[0].rest&&blk[0].rest!=="—")?blk[0].rest:e.rest);
+      const repsPh=String(N(e.reps)).replace(/[^0-9–\-]/g,"")||"#";
+      let rows="";
+      for(let i=0;i<nRows;i++){ const st=sts[i]||{}, ok=!!st.ok, setNo=Math.floor(i/per)+1, side=uni?(i%2?"L":"R"):"";
+        const prevSame = uni ? sts[i-2] : sts[i-1];
+        const phW = (prevSame&&prevSame.w) || (uni&&i%2&&sts[i-1]?.w) || (sg.w!=null?String(sg.w):"kg");
+        const lbl = uni ? `${t("setN",{n:setNo})}<small>${side==="R"?t("right"):t("left")}</small>` : t("setN",{n:setNo});
+        rows+=`<div class="setrow${ok?" ok":""}${i===curI?" cur":""}${uni?" uni"+(side==="L"?" l":""):""}" data-set="${i}" data-side="${side}"><span class="sl">${lbl}</span>
+          ${bw?`<span></span><span></span>`:`<input type="text" inputmode="decimal" data-f="w" value="${esc(st.w??"")}" placeholder="${esc(phW)}" aria-label="${esc(t("setN",{n:setNo}))} ${side} kg"><span class="u">kg</span>`}
+          <input type="text" inputmode="numeric" enterkeyhint="next" data-f="r" value="${esc(st.r??"")}" placeholder="${esc(repsPh)}" aria-label="${esc(t("setN",{n:setNo}))} ${side} ${t("repsIn")}"><span class="u">${t("repsIn")}</span>
+          <button type="button" class="chk" data-chk aria-pressed="${ok}" aria-label="${esc(t("setN",{n:setNo}))} ${side} ${t("done")}">✓</button></div>`; }
+      const progTxt = curI<0 ? t("allSets") : t("setOf",{n:Math.floor(curI/per)+1,m:nSets})+(uni?" · "+(curI%2?t("left"):t("right")):"");
+      h+=`<div class="ex${en.done?" is-done":""}" data-ex="${e.id}" data-blk="${bi}" data-ei="${ei}" data-bn="${blk.length}" data-rest="${rest}" data-letter="${letter}">
+        <div class="fig"><svg viewBox="0 0 120 100" data-fig="${e.fig}" role="img" aria-label="${esc(nm)}"></svg><a href="${yt(e.name.en)}" target="_blank" rel="noopener">${t("video")}</a>
+          ${opts.length&&!e.backSwap?`<button type="button" class="swapbtn" data-swapt aria-expanded="false">⇄ ${t("swap")}</button>`:""}</div>
         <div><h4>${letter}${blk.length>1?ei+1:""} · ${esc(nm)}${e.main?`<span class="tag">Main</span>`:""}</h4>
-          <div class="rx"><span><em>${t("sets")}</em> ${p.sets}</span><span><em>${t("reps")}</em> ${esc(N(e.reps))}</span>${e.rest&&e.rest!=="—"?`<span><em>${t("rest")}</em> ${esc(e.rest)}</span>`:""}${e.unit!=="bw"?`<span><em>${t("effort")}</em> ${p.rir}</span>`:""}</div>
-          <p class="cue">${esc(N(e.cue))}</p>${e.note&&!sg.last?`<p class="note">${esc(N(e.note))}</p>`:""}
-          ${(sg.last||sg.tgt)?`<div class="memo">${sg.last?`<span><b>${t("lastTime")}:</b> ${sg.last.w?fmt(num(sg.last.w))+" kg × ":""}${esc(sg.last.r)}${sg.last.rir!=null?" · RIR "+esc(sg.last.rir):""}</span>`:""}${sg.tgt?`<span class="tgt">${esc(sg.tgt)}</span>`:""}</div>`:""}
+          <div class="rx"><span><em>${t("sets")}</em> ${p.sets}</span><span><em>${t("reps")}</em> ${esc(N(e.reps))}${e.uni?" "+t("perSide"):""}</span>${e.rest&&e.rest!=="—"?`<span><em>${t("rest")}</em> ${esc(e.rest)}</span>`:""}${!bw?`<span><em>${t("effort")}</em> ${p.rir}</span>`:""}</div>
+          <p class="cue">${esc(N(e.cue))}</p>${e.note&&!sg.last&&!chosen?`<p class="note">${esc(N(e.note))}</p>`:""}
+          ${(sg.last||sg.tgt)?`<div class="memo">${sg.last?`<span><b>${t("lastTime")}:</b> ${esc(setsText(sg.last.sets))}${sg.last.rir!=null?" · RIR "+esc(sg.last.rir):""}</span>`:""}${sg.tgt?`<span class="tgt">${esc(sg.tgt)}</span>`:""}</div>`:""}
           ${e.main&&!DAYS[S.ui.day].light?`<button type="button" class="song" data-song>${t("song")}</button>`:""}
         </div>
-        <div class="log">
-          ${e.unit==="bw"?"":`<label>${t("kg")} <input type="text" inputmode="decimal" data-f="w" value="${esc(en.w)}" aria-label="${esc(nm)} kg"></label>`}
-          <label>${t("repsIn")} <input type="text" inputmode="numeric" data-f="r" value="${esc(en.r)}" aria-label="${esc(nm)} ${t("repsIn")}"></label>
-          ${e.unit==="bw"?"":`<span class="rir" role="group" aria-label="${t("rirAsk")}">${t("rirAsk")} ${["0","1","2","3"].map(x=>`<button type="button" data-rir="${x}" aria-pressed="${en.rir===x}">${x==="3"?"3+":x}</button>`).join("")}</span>`}
-          <button type="button" class="done" data-done aria-pressed="${!!en.done}">${en.done?"✓ "+t("done"):t("markDone")}</button>
+        ${opts.length&&!e.backSwap?`<div class="swaps" hidden><button type="button" data-sw="" aria-pressed="${!chosen}">${t("std")}: ${esc(N(e0.name))}</button>${opts.map(o=>`<button type="button" data-sw="${o.key}" aria-pressed="${chosen===o.key}">${esc(N(o.name))}</button>`).join("")}</div>`:""}
+        <div class="sets"><div class="setprog">${progTxt}</div>${rows}
+          ${!bw&&curI<0&&nRows?`<span class="rir" role="group" aria-label="${t("rirAsk")}">${t("rirAsk")} ${["0","1","2","3"].map(x=>`<button type="button" data-rir="${x}" aria-pressed="${en.rir===x}">${x==="3"?"3+":x}</button>`).join("")}</span>`:""}
+          <details class="exnote"${en.note?" open":""}><summary>${t("noteT")}</summary><textarea data-note rows="2" placeholder="${esc(t("notePh"))}">${esc(en.note||"")}</textarea><button type="button" class="btn wa sm" data-notesend>${t("noteSend")}</button></details>
         </div></div>`;
     });
     h+=`</div>`;
@@ -861,13 +969,47 @@ function bindTrain(){
   }
   $("#redo").onclick=()=>{ const s=sess(true); s.draft={...s.checkin}; delete s.checkin; save(); renderTrain(); };
   v.querySelectorAll(".ex").forEach(row=>{
-    const id=row.dataset.ex, s=sess(true), get=()=>(s.ex[id]=s.ex[id]||{});
-    row.querySelectorAll("input[data-f]").forEach(inp=>{
-      inp.oninput=()=>{ const en=get(); en[inp.dataset.f]=inp.value.slice(0,8); en.t=Date.now(); save(); };
-      inp.onchange=()=>checkPR(id);
+    const id=row.dataset.ex, s=sess(true), get=()=>{ s.ex[id]=s.ex[id]||{}; const en=s.ex[id]; if(!Array.isArray(en.sets)){ en.sets=setsOf(en).map(x=>({...x})); delete en.w; delete en.r; } return en; };
+    const commit=(i, toggle)=>{
+      const en=get(); en.sets[i]=en.sets[i]||{}; const st=en.sets[i], sr=row.querySelector(`.setrow[data-set="${i}"]`);
+      if(st.ok && toggle){ st.ok=false; }
+      else if(!st.ok){
+        const ri=sr.querySelector('[data-f="r"]'), wi=sr.querySelector('[data-f="w"]');
+        if(!String(st.r||"").trim()){ if(toggle){ ri.focus(); toast(t("repsNeeded")); } return; }
+        if(wi && !String(st.w||"").trim()){ const ph=num(wi.placeholder); if(ph!=null) st.w=String(ph); else { if(toggle){ wi.focus(); } return; } }
+        st.ok=true; if(sr.dataset.side) st.side=sr.dataset.side;
+      } else return;
+      en.t=Date.now(); const total=row.querySelectorAll(".setrow").length, okN=en.sets.filter(x=>x&&x.ok).length;
+      const wasDone=en.done; en.done=okN>=total; save(); checkPR(id);
+      const y=window.scrollY; renderTrain(); window.scrollTo(0,y);
+      if(!st.ok) return;
+      const nrow=document.querySelector(`#v-train .ex[data-ex="${id}"]`); const nxt=nrow?.querySelector(".setrow.cur [data-f=\"r\"]");
+      if(nxt && !en.done) setTimeout(()=>nxt.focus({preventScroll:false}),60);
+      if(en.done && !wasDone) afterExerciseDone();
+      const sessionDone=[...document.querySelectorAll("#v-train .ex")].every(r=>r.classList.contains("is-done"));
+      if(sessionDone) return;
+      if(st.side==="R"){ toast(t("nowLeft")); return; }
+      const bn=+row.dataset.bn, ei=+row.dataset.ei, letter=row.dataset.letter;
+      if(bn>1 && ei===0) toast(t("nextEx",{x:letter+"2"}));
+      else startRest(+row.dataset.rest, en.done?"":t("nextSet",{n:Math.floor(okN/(row.querySelector(".setrow.uni")?2:1))+1}));
+    };
+    row.querySelectorAll(".setrow").forEach(sr=>{
+      const i=+sr.dataset.set; let tmr;
+      sr.querySelectorAll("input[data-f]").forEach(inp=>{
+        inp.oninput=()=>{ const en=get(); en.sets[i]=en.sets[i]||{}; en.sets[i][inp.dataset.f]=inp.value.replace(",",".").slice(0,7); en.t=Date.now(); save();
+          clearTimeout(tmr); if(inp.dataset.f==="r" && /^\d+$/.test(inp.value.trim())) tmr=setTimeout(()=>{ if(document.activeElement===inp||!document.activeElement||document.activeElement===document.body) commit(i,false); },1600); };
+        inp.onkeydown=ev=>{ if(ev.key==="Enter"){ ev.preventDefault(); clearTimeout(tmr); if(inp.dataset.f==="w"){ sr.querySelector('[data-f="r"]').focus(); } else commit(i,false); } };
+        if(inp.dataset.f==="r") inp.onchange=()=>{ clearTimeout(tmr); if(/^\d+$/.test(inp.value.trim())) setTimeout(()=>{ const ae=document.activeElement; if(!ae || !sr.contains(ae)) commit(i,false); },0); };
+      });
+      sr.querySelector("[data-chk]").onclick=()=>{ clearTimeout(tmr); commit(i,true); };
     });
+    const nt=row.querySelector("[data-note]"); if(nt) nt.oninput=()=>{ const en=get(); en.note=nt.value.slice(0,600); en.t=en.t||Date.now(); save(); };
+    const ns=row.querySelector("[data-notesend]"); if(ns) ns.onclick=()=>{ const en=get(); const ex=ALLEX[id]||{}, day=DAYS[S.ui.day]; const st=setsOf(en).filter(x=>x.ok);
+      waOpen(`${t("waHello")}\n\n💬 ${N(ex.name)} · ${N(day.name)} · ${t("week")} ${S.ui.week}\n${en.note||""}${st.length?"\n"+t("today")+": "+setsText(st):""}`); toast(t("noteSaved")); };
     row.querySelectorAll("[data-rir]").forEach(b=>b.onclick=()=>{ const en=get(); en.rir = en.rir===b.dataset.rir?null:b.dataset.rir; en.t=Date.now(); row.querySelectorAll("[data-rir]").forEach(x=>x.setAttribute("aria-pressed",x.dataset.rir===en.rir)); save(); });
-    row.querySelector("[data-done]").onclick=(ev)=>{ const en=get(); en.done=!en.done; ev.currentTarget.setAttribute("aria-pressed",en.done); ev.currentTarget.textContent=en.done?"✓ "+t("done"):t("markDone"); row.classList.toggle("is-done",en.done); save(); if(en.done) afterExerciseDone(); };
+    const swt=row.querySelector("[data-swapt]"), swp=row.querySelector(".swaps");
+    if(swt) swt.onclick=()=>{ swp.hidden=!swp.hidden; swt.setAttribute("aria-expanded",!swp.hidden); };
+    if(swp) swp.querySelectorAll("[data-sw]").forEach(b=>b.onclick=()=>{ const base=id.split("__")[0]; if(b.dataset.sw) S.swaps[base]=b.dataset.sw; else delete S.swaps[base]; save(); const y=window.scrollY; renderTrain(); window.scrollTo(0,y); });
     const sb=row.querySelector("[data-song]"); if(sb) sb.onclick=()=>{ const u=S.profile.song; if(/^https?:\/\//i.test(u||"")) window.open(u,"_blank","noopener"); else { toast(t("noSong")); go("info"); setTimeout(()=>$("#songI")?.focus(),300); } };
   });
   const af=$("#after");
@@ -878,15 +1020,12 @@ function bindTrain(){
   $("#sendToday").onclick=()=>{ const s=sess(true); s.after=s.after||{}; s.after.at=Date.now(); if(s.start&&!s.end) s.end=Date.now(); save(); waOpen(reportToday()); renderTrain(); renderProg(); updateHG(); };
 }
 function checkPR(id){
-  const s=sess(true), en=s.ex[id]; if(!en) return; const w=num(en.w), r=num(en.r); if(w==null||r==null||r<1) return;
-  const prev=allEntries(id).filter(e=>e.k!==skey()); if(!prev.length) return;
-  const best=Math.max(...prev.map(e=>e1(num(e.w),num(e.r))));
-  const cur=e1(w,r);
-  const existing=S.prs.findIndex(p=>p.k===skey()&&p.id===id);
-  if(cur>best+0.01){
-    const rec={id,k:skey(),w,r,at:Date.now()};
-    if(existing>=0) S.prs[existing]=rec; else { S.prs.push(rec); celebrate(rec); }
-  } else if(existing>=0) S.prs.splice(existing,1);
+  const en=sess(true).ex[id], cur=bestOf(en); const existing=S.prs.findIndex(p=>p.k===skey()&&p.id===id);
+  const prev=allEntries(id).filter(e=>e.k!==skey());
+  if(!cur || !prev.length || ALLEX[id]?.assist){ if(existing>=0) S.prs.splice(existing,1); save(); return; }
+  const best=Math.max(...prev.map(e=>e.v));
+  if(cur.v>best+0.01 && cur.w>0){ const rec={id,k:skey(),w:cur.w,r:cur.r,at:Date.now()}; if(existing>=0) S.prs[existing]=rec; else { S.prs.push(rec); celebrate(rec); } }
+  else if(existing>=0) S.prs.splice(existing,1);
   save(); renderProg(); drawTrail();
 }
 function celebrate(rec){
@@ -918,6 +1057,12 @@ function coachSay(kind){
   clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove("on"),4800);
 }
 $("#coachMsg").onclick=()=>$("#coachMsg").classList.remove("on");
+let rest={end:0,total:0,done:true};
+function startRest(sec,label){ if(!sec) return; rest={end:Date.now()+sec*1000,total:sec,done:false}; $("#restL").textContent=label||t("restL"); $("#restSkip").textContent=t("skip"); $("#rest").classList.remove("go"); $("#rest").classList.add("on"); tickRest(); }
+function tickRest(){ if(!rest.end) return; const el=$("#rest"), left=Math.ceil((rest.end-Date.now())/1000);
+  if(left>0){ $("#restT").textContent=Math.floor(left/60)+":"+String(left%60).padStart(2,"0"); $("#restRing").style.strokeDashoffset=(94.25*(1-left/rest.total)).toFixed(1); }
+  else if(!rest.done){ rest.done=true; try{ navigator.vibrate&&navigator.vibrate([180,90,180]); }catch(e){} $("#restT").textContent=t("restGo"); $("#restRing").style.strokeDashoffset=94.25; el.classList.add("go"); setTimeout(()=>{ if(rest.done){ el.classList.remove("on","go"); rest.end=0; } },2600); } }
+$("#restSkip").onclick=()=>{ rest.end=0; rest.done=true; $("#rest").classList.remove("on","go"); };
 function afterExerciseDone(){
   if($("#celebrate").classList.contains("on")) return;
   const rows=[...document.querySelectorAll("#v-train .ex")], total=rows.length, done=rows.filter(r=>r.classList.contains("is-done")).length, ctx=sessionCtx();
@@ -1149,7 +1294,7 @@ function renderFood(){
 
 /* ---------------- render: progress ---------------- */
 function stalledList(){
-  const out=[]; Object.keys(ALLEX).forEach(id=>{ const en=allEntries(id); if(en.length<4) return; const vals=en.map(e=>e1(num(e.w),num(e.r))); const before=Math.max(...vals.slice(0,-3)); if(Math.max(...vals.slice(-3))<=before+0.01) out.push(N(ALLEX[id].name)); });
+  const out=[]; Object.keys(ALLEX).forEach(id=>{ const en=allEntries(id); if(en.length<4) return; const vals=en.map(e=>e.v); const before=Math.max(...vals.slice(0,-3)); if(Math.max(...vals.slice(-3))<=before+0.01) out.push(N(ALLEX[id].name)); });
   return out;
 }
 function renderProg(){
@@ -1170,7 +1315,7 @@ function renderProg(){
 }
 function drawChart(){
   const svg=$("#chart"); if(!svg) return; const css=getComputedStyle(document.documentElement), col=v=>v.startsWith("--")?css.getPropertyValue(v).trim():v;
-  const series=ANCHORS.map(([id,c])=>({id,c:col(c),pts:allEntries(id).map(e=>({t:e.t||0,v:e1(num(e.w),num(e.r))}))})).filter(s=>s.pts.length);
+  const series=ANCHORS.map(([id,c])=>({id,c:col(c),pts:allEntries(id).map(e=>({t:e.t||0,v:e.v}))})).filter(s=>s.pts.length);
   const Wd=640,H=240,L=40,R=12,Tp=12,B=24; let out="";
   if(!series.length){ svg.innerHTML=`<text x="320" y="120" text-anchor="middle" font-size="15" fill="${css.getPropertyValue("--muted")}">${esc(t("noLift"))}</text>`; $("#legend").innerHTML=""; return; }
   const allT=series.flatMap(s=>s.pts.map(p=>p.t)), allV=series.flatMap(s=>s.pts.map(p=>p.v));
@@ -1185,7 +1330,7 @@ function drawChart(){
 const MOODS=["","😣","🙁","😐","🙂","😄"];
 function sessLines(k,s){
   const [b,w,d]=k.split("-"), day=DAYS[d]; const L=[`• ${N(day.name)} (${t("block")} ${b}, ${t("week")} ${w})`];
-  Object.keys(s.ex||{}).forEach(id=>{ const e=s.ex[id], ex=ALLEX[id]; if(!ex) return; if(e.w||e.r) L.push(`   ${N(ex.name)}: ${e.w?e.w+" kg × ":""}${e.r||"–"}${e.rir!=null?" (RIR "+e.rir+")":""}${S.prs.some(p=>p.k===k&&p.id===id)?" 🏆":""}`); });
+  Object.keys(s.ex||{}).forEach(id=>{ const e=s.ex[id], ex=ALLEX[id]; if(!ex) return; const st=setsOf(e).filter(x=>x.ok); if(st.length) L.push(`   ${N(ex.name)}: ${setsText(st)}${e.rir!=null?" (RIR "+e.rir+")":""}${S.prs.some(p=>p.k===k&&p.id===id)?" 🏆":""}`); if(e.note) L.push(`      💬 ${e.note}`); });
   return L;
 }
 function reportToday(){
@@ -1199,7 +1344,7 @@ function reportToday(){
 }
 function reportRange(days){
   const since=Date.now()-days*DAYMS, L=[t("waHello"),"",`📋 ${t("rRep")} · ${days===7?t("wk"):t("month")}`];
-  const ks=Object.keys(S.sessions).filter(k=>{ const s=S.sessions[k]; const ts=s.after?.at||s.checkin?.at||Math.max(0,...Object.values(s.ex||{}).map(e=>e.t||0)); return ts>=since && (isDone(s)||Object.keys(s.ex||{}).length); });
+  const ks=Object.keys(S.sessions).filter(k=>{ const s=S.sessions[k]; const ts=s.after?.at||s.checkin?.at||Math.max(0,...Object.values(s.ex||{}).map(e=>e.t||0)); return ts>=since && (isDone(s)||Object.values(s.ex||{}).some(e=>bestOf(e))); });
   L.push(`${t("sessions")}: ${ks.length}`);
   const moods=ks.map(k=>S.sessions[k].checkin?.mood).filter(Boolean); if(moods.length) L.push(`${t("avgMood")}: ${MOODS[Math.round(moods.reduce((a,b)=>a+b,0)/moods.length)]}`);
   const en=ks.map(k=>S.sessions[k].checkin?.energy).filter(Boolean); if(en.length) L.push(`${t("avgEnergy")}: ${["high","ok","low"].map(x=>`${t({high:"eHigh",ok:"eOk",low:"eLow"}[x])} ${en.filter(e=>e===x).length}×`).join(", ")}`);
