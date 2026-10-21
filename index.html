@@ -1299,7 +1299,7 @@ function renderFood(){
 
 /* ---------------- render: progress ---------------- */
 function stalledList(){
-  const out=[]; Object.keys(ALLEX).forEach(id=>{ const en=allEntries(id); if(en.length<4) return; const vals=en.map(e=>e.v); const before=Math.max(...vals.slice(0,-3)); if(Math.max(...vals.slice(-3))<=before+0.01) out.push(N(ALLEX[id].name)); });
+  const out=[]; Object.keys(ALLEX).forEach(id=>{ const en=allEntries(id); if(en.length<4) return; const vals=en.map(e=>e.v); const before=Math.max(...vals.slice(0,-3)); if(Math.max(...vals.slice(-3))<=before+0.01) out.push(N(ALLEX[id]?.name)); });
   return out;
 }
 function renderProg(){
@@ -1328,7 +1328,7 @@ function drawChart(){
   const x=tt=>L+(t1===t0?0.5:(tt-t0)/(t1-t0))*(Wd-L-R), y=v=>Tp+(hi-v)*(H-Tp-B)/(hi-lo);
   for(let k=0;k<=4;k++){ const vv=lo+(hi-lo)*k/4; out+=`<line x1="${L}" x2="${Wd-R}" y1="${y(vv)}" y2="${y(vv)}" stroke="${css.getPropertyValue("--line")}"/><text x="${L-6}" y="${y(vv)+4}" text-anchor="end" font-size="11" fill="${css.getPropertyValue("--muted")}">${Math.round(vv)}</text>`; }
   series.forEach(s=>{ const pts=s.pts.map(p=>[x(p.t),y(p.v)]); if(pts.length>1) out+=`<polyline fill="none" stroke="${s.c}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" points="${pts.map(p=>p.join(",")).join(" ")}"/>`; pts.forEach(p=>out+=`<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${css.getPropertyValue("--paper")}" stroke="${s.c}" stroke-width="2.4"/>`); });
-  svg.innerHTML=out; $("#legend").innerHTML=series.map(s=>`<span><i style="background:${s.c}"></i>${esc(N(ALLEX[s.id].name))}</span>`).join("");
+  svg.innerHTML=out; $("#legend").innerHTML=series.map(s=>`<span><i style="background:${s.c}"></i>${esc(N(ALLEX[s.id]?.name))}</span>`).join("");
 }
 
 /* ---------------- reports ---------------- */
@@ -1353,7 +1353,7 @@ function reportRange(days){
   L.push(`${t("sessions")}: ${ks.length}`);
   const moods=ks.map(k=>S.sessions[k].checkin?.mood).filter(Boolean); if(moods.length) L.push(`${t("avgMood")}: ${MOODS[Math.round(moods.reduce((a,b)=>a+b,0)/moods.length)]}`);
   const en=ks.map(k=>S.sessions[k].checkin?.energy).filter(Boolean); if(en.length) L.push(`${t("avgEnergy")}: ${["high","ok","low"].map(x=>`${t({high:"eHigh",ok:"eOk",low:"eLow"}[x])} ${en.filter(e=>e===x).length}×`).join(", ")}`);
-  const prs=S.prs.filter(p=>p.at>=since); L.push(`🏆 ${t("prsW")}: ${prs.length?prs.map(p=>`${N(ALLEX[p.id].name)} ${p.w} kg × ${p.r}`).join("; "):t("none")}`);
+  const prs=S.prs.filter(p=>p.at>=since); L.push(`🏆 ${t("prsW")}: ${prs.length?prs.map(p=>`${N(ALLEX[p.id]?.name)||p.id} ${p.w} kg × ${p.r}`).join("; "):t("none")}`);
   const st=stalledList(); L.push(`⚠️ ${t("stalled")}: ${st.length?st.join(", "):t("none")}`);
   if(days>7){ const ms=[...S.measures].sort((a,b)=>String(a.date).localeCompare(String(b.date))); if(ms.length>1){ const f=ms[0], l=ms[ms.length-1]; L.push("📏 "+["weight","waist","hips","glutes"].map(c=>{ const a=num(f[c]), b=num(l[c]); return a!=null&&b!=null?`${t(c).replace(/ \(.*\)/,"")} ${b-a>=0?"+":""}${fmt(b-a)}`:""; }).filter(Boolean).join(", ")); } }
   if(S.medsInReport&&S.meds.length) L.push("💊 "+S.meds.map(m=>m.name+(m.note?" ("+m.note+")":"")).join(", "));
@@ -1369,7 +1369,38 @@ document.querySelectorAll("[data-lang]").forEach(b=>b.onclick=()=>{ S.ui.lang=b.
 function applyText(){ document.documentElement.lang=S.ui.lang; document.querySelectorAll("[data-t]").forEach(el=>el.textContent=t(el.dataset.t)); document.querySelectorAll("[data-lang]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===S.ui.lang)); $("#fab").href="https://wa.me/"+WA+"?text="+encodeURIComponent(t("waHello")); rotIdx=0; $("#rotWord").textContent=T[S.ui.lang].words[0]; }
 let rotIdx=0; setInterval(()=>{ if(reduce()) return; const w=T[S.ui.lang].words; rotIdx=(rotIdx+1)%w.length; const el=$("#rotWord"); el.classList.remove("swap"); void el.offsetWidth; el.textContent=w[rotIdx]; el.classList.add("swap"); },2800);
 matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change",()=>{ renderInfo(); initFigs($("#v-train")); drawChart(); });
-function renderAll(){ applyText(); renderTrain(); renderInfo(); renderFood(); renderProg(); go(S.ui.tab||"train"); updateHG(); }
+/* ---- safe boot: one broken part never blanks the whole page ---- */
+const BOOT_ERRS=[];
+function fixUI(){ const u=S.ui=S.ui&&typeof S.ui==="object"?S.ui:{};
+  if(!T[u.lang]) u.lang="de";
+  u.block=Math.max(1,Math.floor(+u.block||1));
+  u.week=Math.min(6,Math.max(1,Math.floor(+u.week||1)));
+  if(!DAYS[u.day]) u.day="la";
+  if(!["train","info","food","prog"].includes(u.tab)) u.tab="train";
+  ["sessions","swaps"].forEach(k=>{ if(!S[k]||typeof S[k]!=="object"||Array.isArray(S[k])) S[k]={}; });
+  ["prs","measures","meds"].forEach(k=>{ if(!Array.isArray(S[k])) S[k]=[]; });
+  if(!S.supps||typeof S.supps!=="object") S.supps={qty:{},custom:[]}; if(!S.supps.qty||typeof S.supps.qty!=="object") S.supps.qty={}; if(!Array.isArray(S.supps.custom)) S.supps.custom=[];
+  for(const k in S.sessions){ const x=S.sessions[k]; if(!x||typeof x!=="object") { delete S.sessions[k]; continue; } if(!x.ex||typeof x.ex!=="object") x.ex={}; for(const id in x.ex){ if(!x.ex[id]||typeof x.ex[id]!=="object") delete x.ex[id]; } }
+}
+function safe(name,fn){ try{ fn(); }catch(e){ BOOT_ERRS.push(name+": "+(e&&e.message||e)+" @"+String(e&&e.stack||"").split("\n").slice(0,2).join(" | ").slice(0,220)); try{ console.error(e); }catch(_){} } }
+function showBootErr(){
+  if(!BOOT_ERRS.length || document.getElementById("bootErr")) return;
+  const de=S.ui.lang!=="en", msg="Laura page error\n"+BOOT_ERRS.slice(0,4).join("\n")+"\nUA: "+navigator.userAgent.slice(0,160);
+  const d=document.createElement("div"); d.id="bootErr";
+  d.style.cssText="margin:12px 16px;padding:12px 14px;border-radius:14px;background:var(--paper);border:1.5px solid var(--sand,#C99A4B);font-size:.92rem;line-height:1.4";
+  d.innerHTML=`<b>${de?"Kleiner Fehler auf der Seite":"Small glitch on the page"}</b><br>${de?"Bitte einmal tippen, damit Coach Ibrahim es reparieren kann:":"Please tap once so Coach Ibrahim can fix it:"}<br><a href="https://wa.me/${WA}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:9px 14px;border-radius:999px;background:#25D366;color:#fff;font-weight:700;text-decoration:none">${de?"An Coach senden":"Send to coach"}</a>`;
+  const tabs=document.querySelector(".tabs"); if(tabs&&tabs.parentNode) tabs.parentNode.insertBefore(d,tabs.nextSibling); else document.body.prepend(d);
+}
+window.addEventListener("error",e=>{ BOOT_ERRS.push("runtime: "+(e.message||"")+" @"+(e.lineno||"")+":"+(e.colno||"")); showBootErr(); });
+function renderAll(){
+  safe("fix",fixUI);
+  safe("text",applyText);
+  safe("train",()=>{ try{ renderTrain(); }catch(e){ S.ui.week=1; S.ui.day="la"; renderTrain(); BOOT_ERRS.push("train(retried): "+(e&&e.message||e)); } });
+  safe("info",renderInfo); safe("food",renderFood); safe("prog",renderProg);
+  safe("go",()=>go(S.ui.tab||"train"));
+  safe("trail",updateHG);
+  if(BOOT_ERRS.length){ if(!document.querySelector("section.view.on")) safe("go2",()=>go("train")); showBootErr(); }
+}
 renderAll();
 })();
 </script>
